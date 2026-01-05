@@ -21,15 +21,37 @@ class Riwayat extends BaseController
     public function index()
     {
         $userId = session()->get('user_id');
+        
+        // 1. Ambil input dari filter form (GET request)
+        $filterDate = $this->request->getGet('filter_tanggal');
+        $searchId   = $this->request->getGet('search_id');
 
-        $penjualan = $this->penjualanModel
-                         ->where('id_user', $userId)
-                         ->orderBy('tanggal_penjualan', 'DESC')
-                         ->findAll();
+        // 2. Mulai query builder
+        // Kita inisialisasi query dengan filter wajib: hanya transaksi milik user ini
+        $query = $this->penjualanModel->where('id_user', $userId);
+
+        // 3. Cek apakah filter tanggal diisi
+        if (!empty($filterDate)) {
+            // Menggunakan LIKE 'YYYY-MM-DD%' untuk mencocokkan tanggal pada kolom DATETIME
+            $query->like('tanggal_penjualan', $filterDate, 'after'); 
+        }
+
+        // 4. Cek apakah pencarian ID diisi
+        if (!empty($searchId)) {
+            // Filter berdasarkan ID Transaksi
+            $query->where('id', $searchId);
+        }
+
+        // 5. Eksekusi query
+        $penjualan = $query->orderBy('tanggal_penjualan', 'DESC')
+                        ->findAll();
         
         $data = [
-            'title'     => 'Riwayat Transaksi Saya',
-            'penjualan' => $penjualan,
+            'title'      => 'Riwayat Transaksi Saya',
+            'penjualan'  => $penjualan,
+            // 6. Kirim kembali nilai filter ke View agar input tidak kosong setelah submit
+            'filterDate' => $filterDate,
+            'searchId'   => $searchId
         ];
 
         return view('kasir/riwayat/index', $data);
