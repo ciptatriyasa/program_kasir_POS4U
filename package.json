@@ -1,0 +1,13 @@
+{
+  "name": "ci4-tailwind",
+  "version": "1.0.0",
+  "description": "Integrasi Tailwind CSS v4.1.16 dengan CodeIgniter 4",
+  "scripts": {
+    "dev": "npx tailwindcss -i ./app/Views/css/input.css -o ./public/assets/css/output.css --watch",
+    "build": "npx tailwindcss -i ./app/Views/css/input.css -o ./public/assets/css/output.css --minify"
+  },
+  "devDependencies": {
+    "tailwindcss": "4.1.16",
+    "@tailwindcss/cli": "4.1.16"
+  }
+}
