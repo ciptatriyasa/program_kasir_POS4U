@@ -95,7 +95,7 @@
     </div>
     
     <template x-teleport="body">
-        <div class="relative z-[100]" aria-labelledby="modal-title" role="dialog" aria-modal="true" x-show="detailModalOpen" style="display: none;">
+        <div class="relative z-100" aria-labelledby="modal-title" role="dialog" aria-modal="true" x-show="detailModalOpen" style="display: none;">
             
             <div x-show="detailModalOpen" 
                  x-transition:enter="ease-out duration-300" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" 
