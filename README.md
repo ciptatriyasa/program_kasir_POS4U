@@ -15,7 +15,7 @@ Aplikasi ini digunakan untuk membantu proses transaksi penjualan, pengelolaan pr
 - PHP 8.1+
 - CodeIgniter 4
 - MySQL
-- Bootstrap
+- Tailwindcss
 - Node.js (untuk asset build)
 
 ## Instalasi
