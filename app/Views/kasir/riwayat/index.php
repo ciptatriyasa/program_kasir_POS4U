@@ -94,7 +94,7 @@
         </div>
     </div>
     
-    <template x-teleport="">
+    <template x-teleport="body">
         <div class="relative z-100" aria-labelledby="modal-title" role="dialog" aria-modal="true" x-show="detailModalOpen" style="display: none;">
             
             <div x-show="detailModalOpen" 
